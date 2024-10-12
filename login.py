@@ -8,8 +8,6 @@ class Login:
     def __hash_pass(self):
         salt=bcrypt.gensalt()
         self.hashed_password = bcrypt.hashpw(self.password.encode('utf-8'), salt)
-        print(self.hashed_password)
-        print(type(self.hashed_password))
         return self.hashed_password
     
     def __hash_verify(self, hashed_password)->bool:
@@ -25,9 +23,8 @@ class Login:
         data=self.__get_users()
         for index in data:
             if self.username in index:
-                print("entrou no if")
                 return
-        dict={self.username:str(self.__hash_pass())}
+        dict={self.username:(self.__hash_pass()).decode('utf-8')}
         data.append(dict)
         with open ("login.json", "w") as file:
             json.dump(data ,file) 
@@ -36,14 +33,14 @@ class Login:
         data=self.__get_users()
         for index, login in enumerate(data):
             try:
-                print(((login.get(self.username)).encode('utf-8')))
                 if self.__hash_verify(((login.get(self.username)).encode('utf-8'))):
                     print("deu certo cabeça de pika")
-            except:
-                print("nao deu")
+                    return 1
+            except:pass
+        return 0
 
 
             
 
-p1=Login("gienes", "123456")
-p1.login_user()
+p1=Login("dienes", "12345678")
+print(p1.login_user())

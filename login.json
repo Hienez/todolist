@@ -1,14 +1,5 @@
 [
-  {
-    "nienes": "b'$2b$12$g.jyplbKeM5yyBEdncUvm.YhaQXXN/XoQKhQpSCRuwObv0JhM.WbW'"
-  },
-  {
-    "Hienes": "b'$2b$12$MLi/mh7GWZdprUqgseOWxO70VEAQhCveo61lxZIho1yA/xrGxycMC'"
-  },
-  {
-    "xienes": "b'$2b$12$xRQQGzgjttGvjhJdReFl5OrkV9g99KJ8hPEFTSvSpXQusWj8g.Pvq'"
-  },
-  {
-    "gienes": "b'$2b$12$7YElFBSZ.MCpqgAe6kFTtOaq9NQPFVImH4FiCom9.YS7D6gRgFY9K'"
-  }
+  { "Hienes": "$2b$12$b0bPVOcco2YdUhBEbM6YVeFC0wn3So3EqQ/rA1QcWx7xMOO42G1Km" },
+  { "Nienes": "$2b$12$KFTv5IQTGmgb0wRDyOyCMu6GxpKoKXN1/lx6.n7Yc2Dohy7yaB3ba" },
+  { "Xienes": "$2b$12$RlpxlCagcIWSOJPsPFn0j.2hP3rnRY3f2mBaCkMihLX9GfuaLiU5G" }
 ]
