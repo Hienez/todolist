@@ -14,12 +14,14 @@ def find_task(id:int):
             return index, tasks
     
 
-def inserts_tasks(task:dict):
+def inserts_tasks(task:dict):  
     tasks=get_tasks()
-    tasks.append(task)
+    new_task={"id":(id_create(tasks))}
+    new_task.update(task)    
+    tasks.append(new_task)
     with open("ToDoList.json", "w") as file:
         json.dump(tasks, file)
-    return
+    return 1
 
 
 def exclude_tasks(id:int):
@@ -28,3 +30,11 @@ def exclude_tasks(id:int):
     with open("ToDoList.json","w") as file:
         json.dump(tasks, file)
     return file
+
+def id_create(data:list)->int:
+    id_list=[]
+    for tasks in data:
+        id_list.append(tasks.get("id"))
+    id_list.sort(reverse=True)
+    return id_list[0]+1
+        

@@ -1,24 +1,34 @@
-from fastapi import FastAPI, Query
-from pydantic import BaseModel
-import json
+from fastapi import FastAPI, Query, Path
+from typing import Annotated
+from pydantic import BaseModel, Field
 from utils import *
+from login import Login
 
 
 app= FastAPI()
 
 class Task(BaseModel):
-    id: int | None = None
     name: str
-    description: str
-    status: int
-    priority: int
+    description: str = Field(title= "A Decrição da task")
+    status: int = Field(ge=0, lt=2)
+    priority: int = Field(ge= 0 , le=2)
     created_at: str
     completed_date: str | None = None
     user_id:str
+    
+class LoginData(BaseModel):
+    username:str
+    password: str
 
-@app.get("/login")
-async def login_route():
-    pass
+@app.post("/login/") #mudar rotas(?)
+async def login_route(login:LoginData):
+    p1=Login(login.username, login.password)
+    return p1.login_user()
+
+@app.post("/create_login/")
+async def create_login(login:LoginData):
+    p1=Login(login.username, login.password)
+    return p1.create_user()
 
 @app.get("/home/")
 async def get_task():
@@ -30,6 +40,6 @@ async def create_list(task:Task):
     return task 
 
 @app.delete("/home/{id}")
-async def delete_list(id:int):
+async def delete_list(id:Annotated[int, Path(title="Deletar Tarefa", description="Id para deletar tarefa específica")]):
     tasks=exclude_tasks(id)
     return tasks
