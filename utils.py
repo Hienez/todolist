@@ -36,5 +36,7 @@ def id_create(data:list)->int:
     for tasks in data:
         id_list.append(tasks.get("id"))
     id_list.sort(reverse=True)
-    return id_list[0]+1
+    if  id_list:
+        return id_list[0]+1
+    else: return 1
         

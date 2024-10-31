@@ -8,7 +8,7 @@ from login import Login
 app= FastAPI()
 
 class Task(BaseModel):
-    name: str
+    name: str = Field (title="nome da task", max_length=20)
     description: str = Field(title= "A Decrição da task")
     status: int = Field(ge=0, lt=2)
     priority: int = Field(ge= 0 , le=2)
