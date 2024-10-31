@@ -13,7 +13,7 @@ class Task(BaseModel):
     status: int = Field(ge=0, lt=2)
     priority: int = Field(ge= 0 , le=2)
     created_at: str
-    completed_date: str | None = None
+    complet_at: str | None = None
     user_id:str
     
 class LoginData(BaseModel):
@@ -43,3 +43,8 @@ async def create_list(task:Task):
 async def delete_list(id:Annotated[int, Path(title="Deletar Tarefa", description="Id para deletar tarefa específica")]):
     tasks=exclude_tasks(id)
     return tasks
+
+@app.patch("/home/")
+async def organize_list(q:Annotated[str, Query(description="query nercessaria para odernar lista")],reverse:Annotated[int | None, Query(description="maior para o menor")]=None):
+    return sort_list(q, reverse)
+    
