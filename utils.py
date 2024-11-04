@@ -40,11 +40,23 @@ def id_create(data:list)->int:
         return id_list[0]+1
     else: return 1
     
-def sort_list(q:str,reverse:int):
+def sort_list(q:str,order,value):
     data=get_tasks()
-    data.sort(key=lambda x: x[q].lower())
-    if reverse:
-        data.reverse()
+
+    if order:
+        print(type(order))
+        if "reverse" in order:
+            print("entrou no reverse")
+            data.sort(key=lambda x: x[q].lower())
+            data.reverse()
+            return data
+    if value:
+
+        data.sort(key=lambda x: abs(x[q]-value))
         return data
+    
+    try :
+        data.sort(key=lambda x: x[q].lower())       
+    except: data.sort(key=lambda x: x[q])
     return data
         
