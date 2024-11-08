@@ -45,6 +45,10 @@ async def delete_list(id:Annotated[int, Path(title="Deletar Tarefa", description
     return tasks
 
 @app.patch("/home/")
-async def organize_list(q:Annotated[str, Query(description="Campo a ser ordenado")],order:Annotated[str | None, Query(description="Ordem a ser seguida")]=None, value:Annotated[int|None, Query(description="valor a ser filtrado")]=None):
-    return sort_list(q, order, value)
+async def organize_list(
+    q:Annotated[str, Query(description="Campo a ser ordenado")],
+    order:Annotated[str | None, Query(description="Ordem a ser seguida")]=None,
+    value:Annotated[int|None, Query(description="valor a ser filtrado")]=None
+    ):
+        return sort_list(q, order, value)
     

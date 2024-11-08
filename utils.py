@@ -1,13 +1,22 @@
 import json
 
 
-def get_tasks()->list:
+def get_data()->list:
     with open("ToDoList.json", "r") as file:
         data=json.load(file)
         return data
+    
+def get_tasks(user_id:str):
+    tasks=get_data()
+    new_tasks=[]
+    for task in tasks:
+        if task["user_id"] == user_id:
+            new_tasks.append(task)
+    return new_tasks
+    
 
 def find_task(id:int):
-    tasks=get_tasks()
+    tasks=get_data()
     for index, task in enumerate(tasks):
         if task["id"]==(id):
 
@@ -15,7 +24,7 @@ def find_task(id:int):
     
 
 def inserts_tasks(task:dict):  
-    tasks=get_tasks()
+    tasks=get_data()
     new_task={"id":(id_create(tasks))}
     new_task.update(task)    
     tasks.append(new_task)
@@ -41,7 +50,7 @@ def id_create(data:list)->int:
     else: return 1
     
 def sort_list(q:str,order,value):
-    data=get_tasks()
+    data=get_data()
 
     if order:
         print(type(order))
@@ -59,4 +68,10 @@ def sort_list(q:str,order,value):
         data.sort(key=lambda x: x[q].lower())       
     except: data.sort(key=lambda x: x[q])
     return data
+
+def filter_task():
+    tasks=get_data()
+    for task in tasks:
+        print(task)
         
+print(get_tasks("Hienes"))
